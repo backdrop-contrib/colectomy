@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * Allows the option to hide the colon on field labels in field forms.
+ */
+
+/**
+ * Implements hook_form_FORMID_alter().
+ *
+ * Adds two new options to the field label options.
+ *
+ * @see field_ui_display_overview_form()
+ */
+function colectomy_form_field_ui_display_overview_form_alter(&$form, &$form_state) {
+  foreach (element_children($form['fields']) as $key) {
+    $form['fields'][$key]['label']['#options'] += array(
+      'abovec' => 'Above no colon',
+      'inlinec' => 'Inline no colon',
+    );
+  }
+}
+
+/**
+ * Theme preprocess function for theme_field() and field.tpl.php.
+ *
+ * A modified version of the field_preprocess_field() function which allows us
+ * to add some custom variables used later on the rendering of the array.
+ *
+ * @see theme_field()
+ * @see field.tpl.php
+ */
+function colectomy_preprocess_field(&$variables, $hook) {
+  $element = $variables['element'];
+
+  $variables['label_hidden'] = ($element['#label_display'] == 'hidden');
+  $variables['label'] = $variables['label_hidden'] ? NULL : check_plain($element['#title']);
+
+  $variables['label_colon'] = ($element['#label_display'] == 'inlinec' || $element['#label_display'] == 'abovec');
+
+  if ($element['#label_display'] == 'inline' || $element['#label_display'] == 'inlinec') {
+    $variables['classes_array'][] = 'clearfix';
+  }
+
+  if ($element['#label_display'] == 'inlinec') {
+    $variables['classes_array']['field-label-inline'] = 'field-label-inline';
+  }
+
+  if ($variables['label_colon']) {
+    $variables['theme_hook_suggestions'][] = 'colectomy_field';
+  }
+}
+
+/**
+ * Implements hook_field_attach_view_alter().
+ *
+ * Used to add the #post_render function to field render arrays.
+ */
+function colectomy_field_attach_view_alter(&$output, $context) {
+  foreach (element_children($output) as $key) {
+    if (isset($output[$key]['#field_name'])) {
+      $output[$key]['#post_render']['colectomy'] = 'colectomy_post_render';
+    }
+  }
+}
+
+/**
+ * Allows the final field output to be altered.
+ *
+ * Checks for the existence of one of the custom #label_display options and
+ * does a basic string replacement on the rendered output.
+ */
+function colectomy_post_render($output, $element) {
+  if (isset($element['#label_display'])) {
+    if ($element['#label_display'] == 'abovec' || $element['#label_display'] == 'inlinec') {
+      $output = str_replace(':&nbsp;', '&nbsp;', $output);
+    }
+  }
+  return $output;
+}
