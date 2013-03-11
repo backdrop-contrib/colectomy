@@ -2,3 +2,4 @@ name = Colectomy
 description = Adds an option to field settings to hide the colon on field labels in field forms.
 core = 7.x
 package = Fields
+files[] = tests/colectomy.test
