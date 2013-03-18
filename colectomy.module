@@ -73,7 +73,12 @@ function colectomy_field_attach_view_alter(&$output, $context) {
 function colectomy_post_render($output, $element) {
   if (isset($element['#label_display'])) {
     if ($element['#label_display'] == 'abovec' || $element['#label_display'] == 'inlinec') {
-      $output = str_replace(':&nbsp;', '&nbsp;', $output);
+      // Matches string 'label' (usually part of the field-label class name) and
+      // then the next following colon gets removed. This matches the core
+      // field.tpl.php version but if this is overridden in the theme it may not
+      // match. The assumption is that if the field.tpl.php is overridden then
+      // the user probably won't need this module.
+      $output = preg_replace('|(label.+?)(\:)|', '$1', $output, 1);
     }
   }
   return $output;
