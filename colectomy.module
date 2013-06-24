@@ -14,10 +14,14 @@
  */
 function colectomy_form_field_ui_display_overview_form_alter(&$form, &$form_state) {
   foreach (element_children($form['fields']) as $key) {
-    $form['fields'][$key]['label']['#options'] += array(
-      'abovec' => 'Above no colon',
-      'inlinec' => 'Inline no colon',
-    );
+    // Not all fields have labels, so check first.
+    if (isset($form['fields'][$key]['label'])) {
+      // Add the new options.
+      $form['fields'][$key]['label']['#options'] += array(
+        'abovec' => 'Above no colon',
+        'inlinec' => 'Inline no colon',
+      );
+    }
   }
 }
 
