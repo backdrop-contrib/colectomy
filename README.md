@@ -47,7 +47,7 @@ https://github.com/backdrop-contrib/colectomy/issues.
 
 ### Known Issues
 
-- Port of tests is not working.
+- Issue #1: Tests don't work.
 
 ## Current Maintainers
 <!--
