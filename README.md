@@ -47,7 +47,7 @@ https://github.com/backdrop-contrib/colectomy/issues.
 
 ### Known Issues
 
-- Issue #1: Tests don't work.
+- [Issue #1: Tests don't work](https://github.com/backdrop-contrib/colectomy/issues/1).
 
 ## Current Maintainers
 <!--
