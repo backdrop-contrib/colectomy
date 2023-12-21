@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Allows the option to hide the colon on field labels in field forms.
@@ -12,7 +11,7 @@
  *
  * @see field_ui_display_overview_form()
  */
-function colectomy_form_field_ui_display_overview_form_alter(&$form, &$form_state) {
+function colectomy_form_field_ui_display_form_alter(&$form, &$form_state, $form_id) {
   foreach (element_children($form['fields']) as $key) {
     // Not all fields have labels, so check first.
     if (isset($form['fields'][$key]['label'])) {
@@ -82,7 +81,13 @@ function colectomy_post_render($output, $element) {
       // field.tpl.php version but if this is overridden in the theme it may not
       // match. The assumption is that if the field.tpl.php is overridden then
       // the user probably won't need this module.
-      $output = preg_replace('|(label.+?)(\:)|', '$1', $output, 1);
+      // $output = preg_replace('|(label.+?)(\:)|', '$1', $output, 1);.
+      // The above line is what it used to be but this doesn't work with
+      // the $output from Backdrop CMS's field.tpl.php as it is spread over
+      // multiple lines. It may be that this can be re-instigated as
+      // preg_replace in the future.
+      $count = 1;
+      $output = str_replace(':&nbsp;', '&nbsp;', $output, $count);
     }
   }
   return $output;

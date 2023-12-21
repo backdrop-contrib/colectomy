@@ -1,0 +1,5 @@
+[ColectomyTestCase]
+name = Colectomy
+description = Ensures the labels of fields appear without colons.
+group = Colectomy
+file = colectomy.test

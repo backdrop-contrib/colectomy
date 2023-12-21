@@ -1,5 +1,5 @@
 name = Colectomy
-description = Adds an option to field settings to hide the colon on field labels in field forms.
-core = 7.x
+description = Adds an option to field display settings to hide the colon on field labels.
+backdrop = 1.x
+type = module
 package = Fields
-files[] = tests/colectomy.test
