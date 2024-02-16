@@ -87,7 +87,10 @@ function colectomy_post_render($output, $element) {
       // multiple lines. It may be that this can be re-instigated as
       // preg_replace in the future.
       $count = 1;
-      $output = str_replace(':&nbsp;', '&nbsp;', $output, $count);
+      // Only replace the label if $output is not null.
+      if (!is_null($output)) {
+        $output = str_replace(':&nbsp;', '&nbsp;', $output, $count);
+      }
     }
   }
   return $output;
