@@ -42,11 +42,11 @@ function colectomy_preprocess_field(&$variables, $hook) {
   $variables['label_colon'] = ($element['#label_display'] == 'inlinec' || $element['#label_display'] == 'abovec');
 
   if ($element['#label_display'] == 'inline' || $element['#label_display'] == 'inlinec') {
-    $variables['classes_array'][] = 'clearfix';
+    $variables['classes'][] = 'clearfix';
   }
 
   if ($element['#label_display'] == 'inlinec') {
-    $variables['classes_array']['field-label-inline'] = 'field-label-inline';
+    $variables['classes']['field-label-inline'] = 'field-label-inline';
   }
 
   if ($variables['label_colon']) {
