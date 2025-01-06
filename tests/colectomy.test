@@ -17,6 +17,7 @@ class ColectomyTestCase extends BackdropWebTestCase {
       'access administration pages',
       'administer content types',
       'administer nodes',
+      'administer fields',
       'bypass node access',
     ));
     $this->backdropLogin($this->account);
@@ -31,12 +32,12 @@ class ColectomyTestCase extends BackdropWebTestCase {
     $edit = array(
       'fields[body][label]' => 'abovec',
     );
-    $this->backdropPost('admin/structure/types/manage/article/display', $edit, t('Save'));
+    $this->backdropPost('admin/structure/types/manage/post/display/default', $edit, t('Save'));
     // Create a basic article node.
     $edit = array();
     $edit['title'] = $this->randomName(8);
     $edit["body[und][0][value]"] = $this->randomName(16);
-    $this->backdropPost('node/add/article', $edit, t('Save'));
+    $this->backdropPost('node/add/post', $edit, t('Save'));
     // Assert the body label does not have a colon.
     $this->assertText('Body&nbsp;', 'Body label found');
   }
@@ -50,12 +51,12 @@ class ColectomyTestCase extends BackdropWebTestCase {
     $edit = array(
       'fields[body][label]' => 'above',
     );
-    $this->backdropPost('admin/structure/types/manage/article/display', $edit, t('Save'));
+    $this->backdropPost('admin/structure/types/manage/post/display/default', $edit, t('Save'));
     // Create a basic article node.
     $edit = array();
     $edit['title'] = $this->randomName(8);
     $edit["body[und][0][value]"] = $this->randomName(16);
-    $this->backdropPost('node/add/article', $edit, t('Save'));
+    $this->backdropPost('node/add/post', $edit, t('Save'));
     // Assert the body label has a colon.
     $this->assertText('Body:', 'Body label found');
   }

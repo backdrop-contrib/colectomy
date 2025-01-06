@@ -45,10 +45,6 @@ Link to the repo's issue queue.
 Bugs and Feature Requests should be reported in the Issue Queue:
 https://github.com/backdrop-contrib/colectomy/issues.
 
-### Known Issues
-
-- [Issue #1: Tests don't work](https://github.com/backdrop-contrib/colectomy/issues/1).
-
 ## Current Maintainers
 <!--
 List the current maintainer(s) of the module, and note if this module needs
