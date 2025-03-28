@@ -27,7 +27,7 @@ function colectomy_form_field_ui_display_form_alter(&$form, &$form_state, $form_
 /**
  * Implements hook_form_FORMID_alter() for layout_block_configure_form().
  *
- * Adds two new options to the field label options.
+ * Adds two new options to the field label options for field_blocks.
  */
 function colectomy_form_layout_block_configure_form_alter(&$form, &$form_state, $form_id) {
   $block = $form_state['block'];
