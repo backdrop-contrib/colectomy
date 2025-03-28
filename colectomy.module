@@ -5,9 +5,9 @@
  */
 
 /**
- * Implements hook_form_FORMID_alter().
+ * Implements hook_form_FORMID_alter() for field_ui_display_form().
  *
- * Adds two new options to the field label options.
+ * Adds two new options to the field label options for entity types.
  *
  * @see field_ui_display_overview_form()
  */
@@ -21,6 +21,23 @@ function colectomy_form_field_ui_display_form_alter(&$form, &$form_state, $form_
         'inlinec' => 'Inline no colon',
       );
     }
+  }
+}
+
+/**
+ * Implements hook_form_FORMID_alter() for layout_block_configure_form().
+ *
+ * Adds two new options to the field label options.
+ */
+function colectomy_form_layout_block_configure_form_alter(&$form, &$form_state, $form_id) {
+  $block = $form_state['block'];
+  // If the block is field_block then add colectomy options to the label
+  // setting.
+  if ($block->delta == 'field_block') {
+    $form['label']['#options'] += array(
+      'abovec' => 'Above no colon',
+      'inlinec' => 'Inline no colon',
+    );
   }
 }
 
