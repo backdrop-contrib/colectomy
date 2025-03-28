@@ -6,3 +6,6 @@ type = module
 maintainers[yorkshire-pudding] = Martin Price
 
 package = Fields
+tags[] = Appearance
+tags[] = Content
+tags[] = Site Architecture

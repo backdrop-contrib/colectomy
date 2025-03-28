@@ -32,9 +32,11 @@ this section if not needed (and consider disabling the wiki in the repo settings
 if not used).
 -->
 
-On the 'Manage Display' tab of the content type, the 'Label' setting for each
-field will now have two additional options. Set to 'Above no colon' or 'Inline
-no colon'.
+On the 'Manage Display' tab, the 'Label' setting for each field will now have
+two additional options. Set to 'Above no colon' or 'Inline no colon'.
+
+The additional options will also appear in the form to add a field block to a
+layout.
 
 ## Issues
 
